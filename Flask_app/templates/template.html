@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Vision on AI Job Market</title>
+    <link rel="stylesheet" href="\static\styles.css">
+</head>
+<body>
+    <h1>Share Vision on AI Job Market</h1>
+    <div class="container">
+        <!-- Left Section: Salary Prediction -->
+        <div class="section">
+            <h2>Salary Prediction</h2>
+            <form method="POST" action="/predict_salary">
+                <label for="job_title_salary">Job Title:</label>
+                <select name="job_title_salary" id="job_title_salary" onchange="updateDescription()">
+                    <option value="">Select Job Title</option>
+                    <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                    <option value="AI Researcher">AI Researcher</option>
+                    <option value="Sales Manager">Sales Manager</option>
+                    <option value="UX Designer">UX Designer</option>
+                    <option value="HR Manager">HR Manager</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Operations Manager">Operations Manager</option>
+                </select>
+                <p id="job_description"></p>
+
+                <label for="company_size">Company Size:</label>
+                <select name="company_size" id="company_size">
+                    <option value="">Select Company Size</option>
+                    <option value="Small">Small</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Large">Large</option>
+                </select>
+
+                <label for="location_salary">Location:</label>
+                <select name="location_salary" id="location_salary" onchange="updateLocationImage('salary')">
+                    <option value="">Select Location</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="London">London</option>
+                    <option value="New York">New York</option>
+                    <option value="Paris">Paris</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Sydney">Sydney</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Toronto">Toronto</option>
+                </select>
+
+                <button type="submit">Predict Salary</button>
+            </form>
+            {% if salary_prediction %}
+                <div class="result">
+                    <h3>Result:</h3>
+                    <p>{{ salary_prediction }}</p>
+                </div>
+            {% endif %}
+            <div class="image-container">
+                <img id="location_salary_image" src="" alt="Salary Location Image">
+            </div>
+        </div>
+
+        <!-- Right Section: Job Growth Prediction -->
+        <div class="section">
+            <h2>Current Job Growth Prediction</h2>
+            <form method="POST" action="/predict_stability">
+                <label for="job_title_stability">Current Job Title:</label>
+                <select name="job_title_stability" id="job_title_stability">
+                    <option value="">Select Job Title</option>
+                    <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                    <option value="Marketing Specialist">Marketing Specialist</option>
+                    <option value="AI Researcher">AI Researcher</option>
+                    <option value="Sales Manager">Sales Manager</option>
+                    <option value="UX Designer">UX Designer</option>
+                    <option value="HR Manager">HR Manager</option>
+                    <option value="Product Manager">Product Manager</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Operations Manager">Operations Manager</option>
+                </select>
+
+                <label for="location_stability">Location:</label>
+                <select name="location_stability" id="location_stability" onchange="updateLocationImage('stability')">
+                    <option value="">Select Location</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Dubai">Dubai</option>
+                    <option value="London">London</option>
+                    <option value="New York">New York</option>
+                    <option value="Paris">Paris</option>
+                    <option value="San Francisco">San Francisco</option>
+                    <option value="Singapore">Singapore</option>
+                    <option value="Sydney">Sydney</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Toronto">Toronto</option>
+                </select>
+
+                <label for="salary_usd">Salary (USD):</label>
+                <input type="number" name="salary_usd" id="salary_usd" placeholder="Enter your salary (annually) in USD" min="31970" max="155210">
+
+                <button type="submit">Predict Growth</button>
+            </form>
+            {% if stability_prediction %}
+                <div class="result">
+                    <h3>Result:</h3>
+                    <p>{{ stability_prediction }}</p>
+                </div>
+            {% endif %}
+            <div class="image-container">
+                <img id="location_stability_image" src="" alt="Stability Location Image">
+            </div>
+        </div>
+    </div>
+
+    <script src="\static\script.js"></script>
+</body>
+</html>
